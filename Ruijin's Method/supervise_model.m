@@ -3,7 +3,7 @@ xtr=load('3rdlayer_data.mat');
 xtr=xtr.xtr;
 k=1;image_num=2;channel=288; total_model=287;
 %% extract the neighbor value and their related pixel value
-image_num=100;channel=288;
+image_num=2;channel=288;
 for i = 1:image_num
     fprintf('Loading image %d...\n',i);
     image_temp=reshape(xtr(i,:),[size(xtr,2)/channel, channel]);
