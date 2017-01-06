@@ -63,7 +63,7 @@ def building_residual_block(input_shape, n_feature_maps, kernel_sizes=None, n_sk
     if is_subsample: # subsample (+ channel expansion if needed)
         shortcut_y = Convolution2D(n_feature_maps, kernel_sizes[0], kernel_sizes[1], 
                                     subsample=subsample,
-                                    border_mode='valid')(x)
+                                    border_mode='same')(x)
     else: # channel expansion only (e.g. the very first layer of the whole networks)
         if is_expand_channels:
             shortcut_y = Convolution2D(n_feature_maps, 1, 1, border_mode='same')(x)
@@ -78,7 +78,7 @@ def building_residual_block(input_shape, n_feature_maps, kernel_sizes=None, n_sk
         if i==0 and is_subsample: # [Subsample at layer 0 if needed]
             conv_y = Convolution2D(n_feature_maps, kernel_row, kernel_col,
                                     subsample=subsample,
-                                    border_mode='valid')(conv_y)  
+                                    border_mode='same')(conv_y)  
         else:        
             conv_y = Convolution2D(n_feature_maps, kernel_row, kernel_col, border_mode='same')(conv_y)
     # output
