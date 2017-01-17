@@ -1,0 +1,38 @@
+% clear
+% load('hidstates3rd_alloy2_(24f40f288f6ws9ws9ws).mat')
+cluster_num=6;
+% for i = 1:60
+%     fprintf('Loading image %d...\n',i);
+%     xtr_temp=reshape(xtr(i,:),[1296 288]);
+%     [idx,C]=kmeans(xtr_temp',cluster_num);
+%     for j = 1:cluster_num
+%         index{j}=find(idx==j);
+%     end
+%     index_store{i}=index;
+% end
+
+for j = 1:cluster_num
+for i = cluster_num+1:60*cluster_num
+    cluster_compare=index{j};
+    cluster_temp=index{i};
+    if mod(i,6)~=1
+        simi_num=intersect(cluster_compare,cluster_temp);
+        if simi_num>simi_num_temp
+            simi_num_temp=simi_num;
+        end
+    else
+        cluster_compare=intersect(cluster_compare,cluster_temp);
+        simi_num_temp=0;
+    end
+end
+end
+
+
+for j = 2:60
+    cluster_compare=index_store1{1}{k};
+for i = 1:cluster_num
+    cluster_temp=index_store{j}{i};
+    =intersect(cluster_compare,cluster_temp);
+    
+end
+end
