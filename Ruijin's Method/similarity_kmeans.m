@@ -1,9 +1,9 @@
 clear
-load('hidstates3rd_alloy2_(24f40f288f6ws9ws9ws).mat')
-cluster_num=6;
+load('hidstates3rd_alloy2_(24f40f64f6ws9ws9ws).mat')
+cluster_num=4;
 for i = 1:60
     fprintf('Loading image %d...\n',i);
-    xtr_temp=reshape(xtr(i,:),[1296 288]);
+    xtr_temp=reshape(xtr(i,:),[1296 64]);
     [idx,C]=kmeans(xtr_temp',cluster_num);
     for j = 1:cluster_num
         index{j}=find(idx==j);

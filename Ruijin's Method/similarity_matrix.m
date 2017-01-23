@@ -1,10 +1,11 @@
 %% calculate the mean-similarity
-error_total = zeros(288,288);
+channel_num=64;
+error_total = zeros(channel_num,channel_num);
 for i = 1:60
     fprintf('Loading image %d...\n',i);
-    xtr_temp=reshape(xtr(i,:),[1296 288]);
-    for j = 1:288
-        for k = 1:288
+    xtr_temp=reshape(xtr_sm_store(i,:),[9*9 channel_num]);
+    for j = 1:channel_num
+        for k = 1:channel_num
             error_temp=abs(xtr_temp(:,j)-xtr_temp(:,k)).^2/numel(xtr_temp(:,j));
             error(j,k)=sum(error_temp(:));
         end
@@ -17,8 +18,8 @@ error_mean=error_total/60;
 %% do clustering
 U=triu(error_mean);
 dic_vect=[];
-for i = 1:288
-    for j = 1:288
+for i = 1:64
+    for j = 1:64
         if U(i,j)~=0
             dic_vect=[dic_vect, error_mean(i,j)];
         else

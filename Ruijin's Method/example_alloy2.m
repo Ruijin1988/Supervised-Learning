@@ -1,4 +1,4 @@
-clear;
+% clear;
 xtr=load('alloy2.mat');
 xtr=xtr.xtr;
 k=1;
